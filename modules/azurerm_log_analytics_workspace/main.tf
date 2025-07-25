@@ -7,14 +7,3 @@ resource "azurerm_log_analytics_workspace" "law" {
 }
 
 
-variable "law_name" {
-  
-}
-
-variable "location" {
-  
-}
-
-variable "resource_group_name" {
-  
-}
