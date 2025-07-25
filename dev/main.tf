@@ -63,3 +63,16 @@ module "frontend_vm" {
   subnet_name         = "frontend-todoapp"
 
 }
+
+
+#create module for log analytics workspace 
+
+
+module "log_analytics_workspace" {
+
+  source = "../modules/azurerm_log_analytics_workspace"
+  law_name = "my_log_analytics_workspace"
+  location = "uksouth"
+  resource_group_name = "rg-todoapp"
+  
+}
