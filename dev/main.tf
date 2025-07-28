@@ -79,9 +79,21 @@ module "frontend_vm" {
 
 module "log_analytics_workspace" {
 
+  depends_on = [ module.resource_group ]
+
   source = "../modules/azurerm_log_analytics_workspace"
   law_name = "my-log-analytics-workspace"
   location = "uksouth"
   resource_group_name = "rg-todoapp"
+  
+}
+
+
+module "key_vault" {
+  depends_on = [ module.resource_group_india ]
+  source = "../modules/azurerm_key_vault"
+  key_vault_name = "AvyanDubey"
+  location = "uksouth"
+  resource_group_name = "rg-india"
   
 }
