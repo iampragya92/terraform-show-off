@@ -7,6 +7,15 @@ module "resource_group" {
   location            = "uksouth"
 }
 
+
+
+module "resource_group_india" {
+
+  source              = "../modules/azurerm_resource_group"
+  resource_group_name = "rg-india"
+  location            = "centralindia"
+}
+
 #code to create virtual network for todoapp
 module "vnet" {
 
