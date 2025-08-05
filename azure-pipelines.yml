@@ -1,0 +1,39 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger: none
+
+pool: pipeline-pool
+
+steps:
+- script: echo Hello, world!
+  displayName: 'Run a one-line script'
+
+
+
+
+- task: TerraformInstaller@1
+  inputs:
+    terraformVersion: 'latest'
+
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'init'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/dev'
+    backendServiceArm: 'iss-pyaar-ko-kya-naam-du'
+    backendAzureRmResourceGroupName: 'rg-backend'
+    backendAzureRmStorageAccountName: 'aibasedtodo'
+    backendAzureRmContainerName: 'terraformstatefile'
+    backendAzureRmKey: 'dev.terraformstatefile'
+
+- task: TerraformTask@5
+  inputs:
+    provider: 'azurerm'
+    command: 'plan'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/dev'
+    environmentServiceNameAzureRM: 'iss-pyaar-ko-kya-naam-du'
+
+
