@@ -5,6 +5,13 @@ terraform {
       version = "4.28.0"
     }
   }
+
+   backend "azurerm" {
+    storage_account_name  = "aibasedtodo"
+    resource_group_name   = "rg-backend"
+    container_name        = "terraformstatefiles"
+    key                   = "dev.terraformstatefiles"
+  }
 }
 
 
